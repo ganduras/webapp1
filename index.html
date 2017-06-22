@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> Speed & Controllers | HBR Cloud </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+.container {
+width: 650px;
+padding-right:15px;
+padding-left:15px;
+margin-right:auto;
+margin-left:auto
+
+}
+
+.pulsanti{
+float: center;
+
+}
+</style>
+
+<!-- JAVASCRIPT -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- JS per il funzionamento di HBR -->
+<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script type="text/javascript" src="http://www.hotblackrobotics.com/cloud/webgui/static/js/initros.js"></script>
+</head>
+<body>
+ 
+   
+<script type="text/javascript">
+start_ros('192.168.0.108', 'cyberbot', '192.168.0.108', '192.168.0.108/bridge/');
+</script>
+
+
+<script>
+$(document).ready(function(){
+
+            function update() {
+
+
+                var cmdJoy = new ROSLIB.Topic({
+  		ros : ros,
+  		name : '/' + robot.name +'/velocita',
+  		messageType : 'std_msgs/Float32'
+		});
+
+
+                var tasks_time = $('#tasks_time').slider('value');
+ 
+                
+	var joy = new ROSLIB.Message({
+	"data": tasks_time
+	});
+	cmdJoy.publish(joy);
+ }
+
+           $( "#tasks_time" ).slider({
+                range: "max",
+                step: 0.1,
+                min: 0,
+                max: 1,
+                stop: function() {
+                    update();
+
+                }
+            });
+
+
+        });
+        
+
+
+</script>
+<div id="container">
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#c2b4b3e9408315c8daee207276198c47b9b1a830" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">HBR Cloud</span>
+    </div>
+    <div class="navbar-collapse collapse" id="c2b4b3e9408315c8daee207276198c47b9b1a830">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="http://www.hotblackrobotics.com" title="Home">Home</a>
+        </li>
+        <li>
+          <a href="http://www.hotblackrobotics.com/blog/posts/supporto-tecnico">Supporto</a>
+        </li>
+        <li>
+          <a href="http://www.hotblackrobotics.com/cloud/" title="Cloud">Cloud</a>
+        </li>
+        <li>
+          <a href="http://www.hotblackrobotics.com/cloud/sketch/" title="Sketches">Sketches</a>
+        </li>
+        <li>
+          <a href="http://www.hotblackrobotics.com/cloud/webgui/console" title="ROS">ROS</a>
+        </li>
+        <li class="active">
+          <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Apps
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/hwtest" title="Test Hardware">Test Hardware</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/hwtest_std" title="Test Hardware New">Test Hardware New</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/joystick" title="JoyStick">JoyStick</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/speech" title="Speech Rec">Speech Rec</a>
+            </li>
+            <li class="active">
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/camera" title="RaspiCam">RaspiCam</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/webgui/turtle" title="Turtle">Turtle</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="http://www.hotblackrobotics.com/cloud/robot" title="Robot">Robot</a>
+        </li>
+        <li class="dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">racinggrup@mail.ru
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="http://www.hotblackrobotics.com/cloud/user/profile" title="Profile">Profile</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/change" title="Change Password">Change Password</a>
+            </li>
+            <li>
+              <a href="http://www.hotblackrobotics.com/logout" title="Logout">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="content">
+
+
+
+<div class="container">
+
+
+
+
+    <div class="panel panel-info">
+      <div class="panel-heading">Controllers
+</div>
+      <div class="panel-body">
+
+<div class="col-lg-12">
+    <div class="pulsanti">
+  
+<div style="text-align:center;">
+  <button class="btn btn-default" onclick="myFunction('avanti')">UP</button><br><br>
+  <button class="btn btn-default" onclick="myFunction('sinistra')" >LEFT</button>
+ <button class="btn btn-danger" onclick="myFunction('stop')">STOP</button>
+  <button class="btn btn-default" onclick="myFunction('destra')">RIGHT</button><br><br>
+  <button class="btn btn-default" onclick="myFunction('indietro')">DOWN</button></div>
+    </div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+      <div class="panel-heading">Speed Controller</div>
+      <div class="panel-body"><div id="tasks_time"></div></div>
+    </div>
+</div>
+</div>
+
+
+
+
+<script>
+var cmdJoy = new ROSLIB.Topic({
+  ros : ros,
+  name : '/' + robot.name +'/comando',
+  messageType : 'std_msgs/String'
+});
+
+function myFunction(direzione) {
+var joy = new ROSLIB.Message({
+"data": direzione
+});
+cmdJoy.publish(joy);
+
+}
+
+</script>
+</body>
+</html>
